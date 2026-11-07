@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>b站网页动态首页-动态更新与推荐_b站动态首页入口_关注动态_热门视频</title>
+<meta name="description" content="b站网页动态首页提供实时动态更新与个性化推荐，聚合关注UP主的新视频、直播和专栏。页面涵盖热门动态、分类入口、深度解析与常见问题，帮助快速了解b站动态内容生态和浏览方式。">
+<meta name="keywords" content="b站网页动态首页,动态更新,关注动态,热门视频,b站动态首页入口">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23fb7299'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='Arial'>B</text></svg>">
+<style>
+:root{
+  --bg:#f7f8fc;
+  --surface:#ffffff;
+  --surface-soft:#f1f3f9;
+  --ink:#1a1d27;
+  --ink-soft:#5e6372;
+  --ink-mute:#8b90a0;
+  --brand:#fb7299;
+  --brand-deep:#e05a82;
+  --brand-soft:#ffe8ef;
+  --blue:#3d7eff;
+  --blue-soft:#e8f0ff;
+  --line:#e8eaf2;
+  --radius-lg:20px;
+  --radius-md:14px;
+  --radius-sm:10px;
+  --shadow:0 6px 24px rgba(24,28,47,.06);
+  --shadow-hover:0 12px 32px rgba(24,28,47,.11);
+  --max:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
+section{scroll-margin-top:78px;}
+
+/* ---------- 导航 ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;padding:0 20px;
+  height:64px;display:flex;align-items:center;gap:22px;
+}
+.logo{
+  display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:.4px;
+  flex-shrink:0;
+}
+.logo-mark{
+  width:36px;height:36px;border-radius:11px;
+  background:linear-gradient(135deg,#fb7299,#ff9db6);
+  display:grid;place-items:center;color:#fff;font-size:20px;font-weight:900;
+  box-shadow:0 4px 12px rgba(251,114,153,.35);
+}
+.logo em{font-style:normal;color:var(--brand);}
+.nav-links{
+  display:flex;align-items:center;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none;
+}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{
+  padding:7px 13px;border-radius:9px;font-size:14px;color:var(--ink-soft);
+  white-space:nowrap;transition:.18s;
+}
+.nav-links a:hover{background:var(--brand-soft);color:var(--brand-deep);}
+.nav-cta{
+  flex-shrink:0;background:var(--brand);color:#fff;padding:8px 18px;border-radius:10px;
+  font-size:14px;font-weight:600;transition:.2s;box-shadow:0 4px 14px rgba(251,114,153,.3);
+}
+.nav-cta:hover{background:var(--brand-deep);transform:translateY(-1px);}
+
+/* ---------- Banner ---------- */
+.hero{
+  margin-top:22px;
+  background:
+    radial-gradient(900px 380px at 82% -30%,rgba(251,114,153,.16),transparent 70%),
+    radial-gradient(700px 340px at 8% 120%,rgba(61,126,255,.12),transparent 70%),
+    linear-gradient(180deg,#ffffff,#fbfcff);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  padding:48px 44px 42px;
+  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;
+  border-radius:50%;background:linear-gradient(135deg,rgba(251,114,153,.13),rgba(61,126,255,.08));
+  pointer-events:none;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--brand-soft);color:var(--brand-deep);
+  font-size:13px;font-weight:600;padding:5px 13px;border-radius:99px;margin-bottom:18px;
+}
+.hero-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand);}
+.hero h1{
+  font-size:38px;line-height:1.28;font-weight:800;letter-spacing:-.5px;max-width:820px;
+}
+.hero h1 span{color:var(--brand);}
+.hero p.lead{
+  margin-top:16px;color:var(--ink-soft);font-size:16px;max-width:760px;line-height:1.85;
+}
+.hero-search{
+  margin-top:26px;display:flex;gap:10px;max-width:620px;
+}
+.hero-search input{
+  flex:1;height:50px;border:1.5px solid var(--line);border-radius:13px;
+  padding:0 18px;font-size:15px;background:#fff;outline:none;transition:.2s;
+  color:var(--ink);
+}
+.hero-search input:focus{border-color:var(--brand);box-shadow:0 0 0 4px rgba(251,114,153,.12);}
+.hero-search button{
+  height:50px;padding:0 28px;border:none;border-radius:13px;background:var(--brand);
+  color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;
+  box-shadow:0 6px 18px rgba(251,114,153,.3);
+}
+.hero-search button:hover{background:var(--brand-deep);}
+.hero-btns{
+  margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;
+}
+.hero-btns a{
+  padding:9px 18px;border-radius:99px;font-size:14px;font-weight:500;
+  background:#fff;border:1px solid var(--line);color:var(--ink-soft);transition:.2s;
+}
+.hero-btns a:hover{border-color:var(--brand);color:var(--brand-deep);background:var(--brand-soft);transform:translateY(-2px);}
+
+/* ---------- 通用 section ---------- */
+.sec{margin-top:44px;}
+.sec-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;
+}
+.sec-head h2{
+  font-size:23px;font-weight:800;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;
+}
+.sec-head h2::before{
+  content:"";width:5px;height:22px;border-radius:3px;
+  background:linear-gradient(180deg,var(--brand),#ffa8c0);
+}
+.sec-head .more{
+  font-size:13.5px;color:var(--ink-mute);transition:.2s;white-space:nowrap;
+}
+.sec-head .more:hover{color:var(--brand);}
+
+/* ---------- 内容简介 ---------- */
+.intro-box{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:30px 34px;box-shadow:var(--shadow);
+}
+.intro-box p{color:var(--ink-soft);font-size:15px;line-height:1.9;margin-bottom:14px;}
+.intro-box p:last-child{margin-bottom:0;}
+.intro-box strong{color:var(--ink);font-weight:700;}
+.intro-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;}
+.intro-chips span{
+  font-size:13px;padding:5px 13px;border-radius:99px;background:var(--surface-soft);
+  color:var(--ink-soft);
+}
+
+/* ---------- 推荐卡片 ---------- */
+.card-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.v-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);
+  overflow:hidden;box-shadow:var(--shadow);transition:.22s;display:flex;flex-direction:column;
+}
+.v-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:#ffd3e0;}
+.v-cover{
+  height:118px;position:relative;display:flex;align-items:flex-end;padding:14px;
+  background:linear-gradient(135deg,#fce4ec,#e8f0ff);
+}
+.v-cover.c1{background:linear-gradient(135deg,#ffe0ea,#ffd1dc);}
+.v-cover.c2{background:linear-gradient(135deg,#e3edff,#d9e6ff);}
+.v-cover.c3{background:linear-gradient(135deg,#e6f7f1,#d6f0e6);}
+.v-cover.c4{background:linear-gradient(135deg,#fff2dc,#ffe8c7);}
+.v-cover.c5{background:linear-gradient(135deg,#eee6ff,#e2d7ff);}
+.v-cover.c6{background:linear-gradient(135deg,#ffe6e0,#ffd8cf);}
+.v-cover .badge{
+  position:absolute;top:12px;right:12px;font-size:11.5px;font-weight:700;
+  background:rgba(255,255,255,.85);color:var(--brand-deep);padding:3px 10px;border-radius:99px;
+  backdrop-filter:blur(4px);
+}
+.v-cover .type{
+  font-size:12px;font-weight:600;color:#fff;background:rgba(0,0,0,.28);
+  padding:3px 10px;border-radius:99px;backdrop-filter:blur(4px);
+}
+.v-body{padding:15px 16px 17px;flex:1;display:flex;flex-direction:column;}
+.v-body h3{font-size:15.5px;font-weight:700;line-height:1.45;}
+.v-desc{font-size:13px;color:var(--ink-mute);line-height:1.7;margin-top:8px;flex:1;}
+.v-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;}
+.v-tags span{
+  font-size:11.5px;padding:2px 9px;border-radius:6px;background:var(--surface-soft);color:var(--ink-soft);
+}
+.v-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);
+  font-size:12px;color:var(--ink-mute);
+}
+.v-meta .heat{color:var(--brand);font-weight:700;}
+
+/* ---------- 最新更新列表 ---------- */
+.update-list{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.update-item{
+  display:flex;align-items:flex-start;gap:16px;padding:17px 24px;
+  border-bottom:1px solid var(--line);transition:.18s;
+}
+.update-item:last-child{border-bottom:none;}
+.update-item:hover{background:#fbfcff;}
+.up-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--brand);margin-top:8px;flex-shrink:0;
+  box-shadow:0 0 0 4px rgba(251,114,153,.14);
+}
+.up-main{flex:1;min-width:0;}
+.up-main h4{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.up-main h4 .new{
+  font-size:10.5px;font-weight:700;color:#fff;background:var(--brand);padding:1px 7px;border-radius:5px;
+}
+.up-main p{font-size:13px;color:var(--ink-mute);margin-top:4px;line-height:1.65;}
+.up-time{font-size:12.5px;color:var(--ink-mute);flex-shrink:0;white-space:nowrap;}
+
+/* ---------- 分类入口 ---------- */
+.cat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+}
+.cat-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:20px 18px;transition:.2s;box-shadow:var(--shadow);
+}
+.cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:#ffd3e0;}
+.cat-card .ic{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:18px;margin-bottom:11px;background:var(--brand-soft);
+}
+.cat-card h4{font-size:14.5px;font-weight:700;}
+.cat-card p{font-size:12.5px;color:var(--ink-mute);margin-top:4px;line-height:1.6;}
+
+/* ---------- 深度解析 ---------- */
+.deep-wrap{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:34px 38px;box-shadow:var(--shadow);
+}
+.deep-wrap h3{
+  font-size:18px;font-weight:800;margin:26px 0 12px;color:var(--ink);letter-spacing:-.2px;
+}
+.deep-wrap h3:first-child{margin-top:0;}
+.deep-wrap p{color:var(--ink-soft);font-size:14.8px;line-height:1.92;margin-bottom:14px;}
+.deep-wrap p strong{color:var(--ink);}
+.deep-note{
+  margin-top:20px;padding:16px 20px;border-radius:var(--radius-sm);
+  background:var(--blue-soft);border-left:4px solid var(--blue);
+  font-size:13.6px;color:#2b4a8f;line-height:1.8;
+}
+
+/* ---------- 体验指南 ---------- */
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.guide-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:22px 20px;box-shadow:var(--shadow);transition:.2s;
+}
+.guide-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+.guide-card .num{
+  font-size:26px;font-weight:900;color:#ffd3e0;line-height:1;margin-bottom:10px;
+}
+.guide-card h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.guide-card p{font-size:13px;color:var(--ink-mute);line-height:1.72;}
+
+/* ---------- FAQ ---------- */
+.faq-list{display:flex;flex-direction:column;gap:12px;}
+.faq-item{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.faq-q{
+  width:100%;text-align:left;border:none;background:transparent;cursor:pointer;
+  padding:17px 22px;font-size:15px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  font-family:inherit;transition:.18s;
+}
+.faq-q:hover{background:#fbfcff;}
+.faq-q .ico{
+  flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--brand-soft);
+  color:var(--brand-deep);display:grid;place-items:center;font-size:15px;font-weight:700;
+  transition:.24s;
+}
+.faq-item.open .faq-q .ico{transform:rotate(45deg);background:var(--brand);color:#fff;}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .3s ease;
+}
+.faq-a p{padding:0 22px 18px;font-size:13.8px;color:var(--ink-soft);line-height:1.85;}
+
+/* ---------- 评论 ---------- */
+.cmt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.cmt-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:17px 19px;box-shadow:var(--shadow);transition:.18s;
+}
+.cmt-card:hover{box-shadow:var(--shadow-hover);}
+.cmt-top{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.avatar{
+  width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.cmt-name{font-size:13.5px;font-weight:700;}
+.cmt-time{font-size:11.5px;color:var(--ink-mute);margin-top:1px;}
+.cmt-text{font-size:13.5px;color:var(--ink-soft);line-height:1.78;}
+.cmt-like{
+  margin-top:9px;font-size:12px;color:var(--ink-mute);display:flex;gap:14px;
+}
+.cmt-like span{display:inline-flex;align-items:center;gap:4px;}
+
+/* ---------- 资讯 ---------- */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.news-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:20px;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column;
+}
+.news-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:#ffd3e0;}
+.news-date{
+  font-size:11.5px;color:var(--brand-deep);font-weight:700;background:var(--brand-soft);
+  padding:3px 10px;border-radius:99px;align-self:flex-start;margin-bottom:11px;
+}
+.news-card h4{font-size:14.5px;font-weight:700;line-height:1.5;}
+.news-card p{font-size:13px;color:var(--ink-mute);line-height:1.7;margin-top:7px;flex:1;}
+
+/* ---------- 页脚 ---------- */
+.footer{
+  margin-top:56px;background:#151823;color:#a9adbd;padding:44px 0 30px;
+}
+.footer .wrap{display:flex;flex-direction:column;gap:28px;}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;}
+.foot-brand .logo{color:#fff;margin-bottom:12px;}
+.foot-brand p{font-size:13px;line-height:1.8;color:#8b90a0;max-width:280px;}
+.foot-col h5{font-size:14px;font-weight:700;color:#fff;margin-bottom:12px;}
+.foot-col a{display:block;font-size:13px;color:#8b90a0;padding:4px 0;transition:.18s;}
+.foot-col a:hover{color:var(--brand);}
+.foot-bottom{
+  border-top:1px solid #262b3a;padding-top:22px;font-size:12.5px;color:#6f7488;
+  display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between;line-height:1.8;
+}
+
+/* ---------- 响应式 ---------- */
+@media(max-width:1024px){
+  .card-grid,.news-grid{grid-template-columns:repeat(2,1fr);}
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .guide-grid{grid-template-columns:repeat(2,1fr);}
+  .foot-top{grid-template-columns:1fr 1fr;}
+  .hero h1{font-size:31px;}
+}
+@media(max-width:720px){
+  .nav-links{display:none;}
+  .hero{padding:34px 22px 30px;}
+  .hero h1{font-size:26px;}
+  .hero p.lead{font-size:14.5px;}
+  .hero-search{flex-direction:column;}
+  .hero-search button{width:100%;}
+  .card-grid,.news-grid,.cmt-grid,.guide-grid{grid-template-columns:1fr;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .deep-wrap,.intro-box{padding:24px 20px;}
+  .sec-head h2{font-size:19px;}
+  .foot-top{grid-template-columns:1fr;}
+  .update-item{padding:14px 16px;gap:12px;}
+  .up-time{display:none;}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- ============ 导航 ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/#dyn-hero" class="logo">
+      <span class="logo-mark">B</span>
+      <span>b站<em>动态</em>首页</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#dyn-hot">热门动态</a>
+      <a href="/#dyn-update">最新更新</a>
+      <a href="/#dyn-cat">分类入口</a>
+      <a href="/#dyn-deep">深度解析</a>
+      <a href="/#dyn-guide">浏览指南</a>
+      <a href="/#dyn-faq">常见问题</a>
+      <a href="/#dyn-cmt">用户评论</a>
+      <a href="/#dyn-news">相关资讯</a>
+    </nav>
+    <a href="/#dyn-hero" class="nav-cta">刷新动态</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ 首屏 Banner ============ -->
+  <section class="hero" id="dyn-hero">
+    <span class="hero-tag">实时动态 · 个性化推荐</span>
+    <h1>b站网页动态首页 <span>关注动态</span> 与热门内容一屏掌握</h1>
+    <p class="lead">
+      打开 b站网页动态首页，关注 UP 主的新视频、直播开播与专栏更新按时间线聚合呈现，配合分区推荐与热门榜单，形成完整的内容消费入口。
+    </p>
+    <p class="lead" style="margin-top:8px;">
+      本页围绕动态首页的浏览方式、推荐逻辑和常见使用场景展开，适合想快速了解 b 站动态生态、追踪关注更新或寻找高质量内容的用户参考阅读。
+    </p>
+    <div class="hero-search">
+      <input type="text" placeholder="搜索 UP 主、动态关键词或分区，如「科技区动态」" aria-label="搜索动态内容">
+      <button type="button">搜索动态</button>
+    </div>
+    <div class="hero-btns">
+      <a href="/#dyn-hot">热门动态榜</a>
+      <a href="/#dyn-update">关注更新流</a>
+      <a href="/#dyn-cat">分区入口</a>
+      <a href="/#dyn-deep">动态机制解析</a>
+      <a href="/#dyn-guide">浏览体验指南</a>
+      <a href="/#dyn-faq">常见问题</a>
+      <a href="/#dyn-news">动态相关资讯</a>
+      <a href="/#dyn-cmt">社区讨论</a>
+    </div>
+  </section>
+
+  <!-- ============ 内容简介 ============ -->
+  <section class="sec" id="dyn-intro">
+    <div class="sec-head">
+      <h2>b站网页动态首页内容概览</h2>
+      <a href="/#dyn-hot" class="more">查看热门动态 →</a>
+    </div>
+    <div class="intro-box">
+      <p>
+        <strong>b站网页动态首页</strong>是 bilibili 网页端承载「关注动态」的核心页面，它把用户所关注 UP 主的最新视频、图文、直播、专栏和转发内容，按发布时间倒序聚合在同一条信息流中。对习惯在电脑端浏览的用户来说，动态首页承担着「打开即看更新」的角色，也是从被动推荐转向主动追踪的关键入口。
+      </p>
+      <p>
+        与首页推荐流不同，动态首页的内容来源更偏向「你主动关注的账号」。这意味着信息密度更高、兴趣匹配更精准，但也对关注列表的质量提出要求。页面通常会结合「热门动态」「分区推荐」和「稍后再看」等模块，帮助用户在关注流之外扩展内容边界。
+      </p>
+      <p>
+        本页面向三类读者：一是刚接触 b 站网页端、想弄清动态首页怎么用的新用户；二是希望优化关注列表、提升动态流质量的老用户；三是寻找内容选题、了解社区热点的创作者与运营者。页面整理了动态更新规律、推荐机制解读、常见使用问题和社区讨论样本，可作为长期收藏的参考页。
+      </p>
+      <div class="intro-chips">
+        <span>关注动态时间线</span>
+        <span>UP 主更新追踪</span>
+        <span>网页端浏览入口</span>
+        <span>热门内容聚合</span>
+        <span>分区推荐逻辑</span>
+        <span>社区互动场景</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 热门推荐 ============ -->
+  <section class="sec" id="dyn-hot">
+    <div class="sec-head">
+      <h2>热门动态推荐</h2>
+      <a href="/#dyn-update" class="more">更多更新 →</a>
+    </div>
+    <div class="card-grid">
+
+      <article class="v-card">
+        <div class="v-cover c1">
+          <span class="badge">热度 98</span>
+          <span class="type">科技 · 数码</span>
+        </div>
+        <div class="v-body">
+          <h3>年度旗舰手机影像横评：夜景样张逐帧对比</h3>
+          <p class="v-desc">四台旗舰同场景实拍，从高光压制到暗部噪点逐项拆解，附带原图可下载，适合换机前做参考。</p>
+          <div class="v-tags"><span>数码评测</span><span>样张对比</span><span>选购参考</span></div>
+          <div class="v-meta"><span>UP主 · 影像研究所</span><span class="heat">12.6万 播放</span></div>
+        </div>
+      </article>
+
+      <article class="v-card">
+        <div class="v-cover c2">
+          <span class="badge">直播中</span>
+          <span class="type">游戏 · 竞速</span>
+        </div>
+        <div class="v-body">
+          <h3>深夜速通专场：全成就路线无伤挑战</h3>
+          <p class="v-desc">主播正在冲击个人最快记录，弹幕可点歌互动，存档点讲解对新手友好，适合边看边学路线规划。</p>
+          <div class="v-tags"><span>速通</span><span>弹幕互动</span><span>路线教学</span></div>
+          <div class="v-meta"><span>直播间 · 夜行速通</span><span class="heat">3.2万 在线</span></div>
+        </div>
+      </article>
+
+      <article class="v-card">
+        <div class="v-cover c3">
+          <span class="badge">新番</span>
+          <span class="type">动画 · 追番</span>
+        </div>
+        <div class="v-body">
+          <h3>本季黑马番第 7 话：分镜与配乐的叙事配合</h3>
+          <p class="v-desc">从运镜节奏到配乐插入点，逐段拆解这一话的情绪推进方式，附原作漫画对应分镜对照。</p>
+          <div class="v-tags"><span>分镜解析</span><span>配乐</span><span>追番笔记</span></div>
+          <div class="v-meta"><span>UP主 · 番剧观察室</span><span class="heat">8.9万 播放</span></div>
+        </div>
+      </article>
+
+      <article class="v-card">
+        <div class="v-cover c4">
+          <span class="badge">高赞</span>
+          <span class="type">知识 · 科普</span>
+        </div>
+        <div class="v-body">
+          <h3>十分钟讲清「动态推荐是怎么工作的」</h3>
+          <p class="v-desc">用可视化方式拆解信息流排序逻辑，解释为什么同样关注了 200 人，动态流内容差异却很大。</p>
+          <div class="v-tags"><span>推荐机制</span><span>信息流</span><span>科普</span></div>
+          <div class="v-meta"><span>UP主 · 拆解频道</span><span class="heat">15.3万 播放</span></div>
+        </div>
+      </article>
+
+      <article class="v-card">
+        <div class="v-cover c5">
+          <span class="badge">专栏</span>
+          <span class="type">生活 · 纪实</span>
+        </div>
+        <div class="v-body">
+          <h3>图文动态：一座小城的早市与手艺人</h3>
+          <p class="v-desc">18 张图记录的清晨市集，配文字讲述三位摊主的故事，评论区有本地读者补充了更多细节。</p>
+          <div class="v-tags"><span>图文动态</span><span>纪实</span><span>城市观察</span></div>
+          <div class="v-meta"><span>UP主 · 慢镜头日记</span><span class="heat">2.7万 阅读</span></div>
+        </div>
+      </article>
+
+      <article class="v-card">
+        <div class="v-cover c6">
+          <span class="badge">热议</span>
+          <span class="type">音乐 · 现场</span>
+        </div>
+        <div class="v-body">
+          <h3>小型 Live 现场全记录：三首未发表新歌首唱</h3>
+          <p class="v-desc">现场收音版本，保留了观众合唱与乐队即兴段落，动态评论区正在讨论新专辑的编曲走向。</p>
+          <div class="v-tags"><span>Live现场</span><span>新歌首唱</span><span>乐队</span></div>
+          <div class="v-meta"><span>UP主 · 现场收音站</span><span class="heat">6.4万 播放</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ 最新更新 ============ -->
+  <section class="sec" id="dyn-update">
+    <div class="sec-head">
+      <h2>关注动态更新流</h2>
+      <span class="more">按时间倒序 · 2026年11月7日</span>
+    </div>
+    <div class="update-list">
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>影像研究所 <span class="new">NEW</span></h4>
+          <p>发布了新视频《年度旗舰手机影像横评》下半部分，补充了视频防抖与长焦样张对比。</p>
+        </div>
+        <span class="up-time">12 分钟前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>番剧观察室 <span class="new">NEW</span></h4>
+          <p>更新专栏：本季新番第 7 话分镜笔记，附 23 张关键帧对照图，评论区已开放讨论。</p>
+        </div>
+        <span class="up-time">46 分钟前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>夜行速通</h4>
+          <p>直播已开播，今晚目标是全成就路线无伤挑战，直播间标题：最后一次冲榜。</p>
+        </div>
+        <span class="up-time">1 小时前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>拆解频道 <span class="new">NEW</span></h4>
+          <p>科普视频《动态推荐是怎么工作的》上线，评论区有产品经理出没补充了排序细节。</p>
+        </div>
+        <span class="up-time">2 小时前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>慢镜头日记</h4>
+          <p>发布一组 18 张图文动态，记录小城早市手艺人，配文较长建议点开全屏阅读。</p>
+        </div>
+        <span class="up-time">3 小时前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>现场收音站</h4>
+          <p>上传小型 Live 现场全记录，三首未发表新歌首唱，建议佩戴耳机收听。</p>
+        </div>
+        <span class="up-time">4 小时前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>历史档案室 <span class="new">NEW</span></h4>
+          <p>更新纪录片式长视频《旧城改造三十年》第一集，时长 42 分钟，含建筑师访谈。</p>
+        </div>
+        <span class="up-time">5 小时前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>手作工坊</h4>
+          <p>动态转发了一条木工工具保养技巧，并附上了自己的工具清单与使用年限。</p>
+        </div>
+        <span class="up-time">6 小时前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>读书切片</h4>
+          <p>发布 3 条短动态，摘录本周读到的三本书段落，其中一本附了完整书评链接。</p>
+        </div>
+        <span class="up-time">8 小时前</span>
+      </div>
+      <div class="update-item">
+        <span class="up-dot"></span>
+        <div class="up-main">
+          <h4>运动记录仪</h4>
+          <p>更新训练日志视频：四周力量训练计划复盘，含动作细节与饮食安排。</p>
+        </div>
+        <span class="up-time">10 小时前</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 分类入口 ============ -->
+  <section class="sec" id="dyn-cat">
+    <div class="sec-head">
+      <h2>动态分区入口</h2>
+      <a href="/#dyn-hot" class="more">按分区浏览 →</a>
+    </div>
+    <div class="cat-grid">
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">🎬</div>
+        <h4>影视动态</h4>
+        <p>新片预告、影评长文与幕后花絮的更新聚合</p>
+      </a>
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">🎮</div>
+        <h4>游戏动态</h4>
+        <p>攻略、速通、赛事与版本更新的追踪入口</p>
+      </a>
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">🎵</div>
+        <h4>音乐动态</h4>
+        <p>现场、新歌、乐评与翻唱内容的动态流</p>
+      </a>
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">📚</div>
+        <h4>知识动态</h4>
+        <p>科普、历史、读书笔记的长内容更新</p>
+      </a>
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">🎨</div>
+        <h4>动画动态</h4>
+        <p>追番笔记、分镜解析与同人创作动态</p>
+      </a>
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">📷</div>
+        <h4>生活动态</h4>
+        <p>图文记录、Vlog 与城市观察的日常更新</p>
+      </a>
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">💻</div>
+        <h4>科技动态</h4>
+        <p>数码评测、开发日志与产品体验动态</p>
+      </a>
+      <a href="/#dyn-hot" class="cat-card">
+        <div class="ic">🏃</div>
+        <h4>运动动态</h4>
+        <p>训练记录、赛事集锦与健康计划更新</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 深度解析 ============ -->
+  <section class="sec" id="dyn-deep">
+    <div class="sec-head">
+      <h2>深度解析：b站网页动态首页到底看什么</h2>
+    </div>
+    <div class="deep-wrap">
+      <h3>一、动态首页与首页推荐流的本质区别</h3>
+      <p>
+        很多用户第一次打开 <strong>b站网页动态首页</strong>时，会误以为它只是「首页的另一个版本」。实际上两者的内容来源逻辑不同：首页推荐流以平台算法推荐为主，混合了热门、兴趣匹配和探索内容；而动态首页以「关注关系」为第一优先级，时间线的排序更接近社交媒体的关注流。你关注了谁，动态首页就更偏向谁的内容，这决定了它的信息密度和兴趣纯度都更高。
+      </p>
+      <p>
+        这也解释了为什么同样是 b 站用户，有人觉得动态首页「全是宝藏」，有人觉得「更新量太大刷不完」。差异不在页面本身，而在关注列表的构成。关注数过多、跨度过大，就会导致动态流出现大量低相关内容；相反，关注列表经过筛选后，动态首页会成为效率最高的内容入口之一。
+      </p>
+
+      <h3>二、动态流的排序与更新规律</h3>
+      <p>
+        网页端动态首页通常按发布时间倒序展示关注对象的更新，同时会对同一 UP 主的连续动态做轻量合并，避免刷屏。视频、图文、专栏、直播开播通知等内容类型会以不同卡片样式呈现，直播类动态通常占据更高的视觉权重。对追更型用户来说，动态首页的价值在于「不漏更新」；对内容创作者来说，它则是观察同行发布节奏的窗口。
+      </p>
+      <p>
+        更新频率较高的账号往往集中在资讯、游戏和科技分区，这些分区的动态流滚动速度更快；而知识、纪实类账号的单条动态信息量更大，阅读时长也更长。理解这一差异，有助于你安排浏览顺序：先扫一眼高频分区确认有没有突发内容，再回到长内容分区慢慢阅读。
+      </p>
+
+      <h3>三、动态首页的内容类型构成</h3>
+      <p>
+        在 <strong>b站网页动态首页</strong>的信息流中，常见的内容类型包括：视频投稿、图文动态、专栏文章、直播开播、转发与点赞动态、追番更新提醒等。不同类型在卡片上的信息层次不同，视频类通常会显示封面、标题和播放数据，图文类则更突出文字摘要与配图数量。这种差异化展示，本质上是在帮助用户快速判断「这条内容值不值得点开」。
+      </p>
+
+      <h3>四、哪些人最适合把动态首页作为主入口</h3>
+      <p>
+        第一类是深度追更用户，关注列表稳定、对特定 UP 主有长期观看习惯；第二类是内容从业者，需要跟踪同分区创作者的更新节奏与选题方向；第三类是信息筛选型用户，更愿意主动决定看什么，而不是完全交给推荐算法。对这三类人来说，动态首页的「可控性」是它最大的优势。
+      </p>
+      <p>
+        反过来，如果你更希望「被推荐带路」、发现关注范围之外的新内容，首页推荐流和分区热门榜会更合适。动态首页和推荐流并不是替代关系，而是两种不同的内容发现方式，交替使用往往效率更高。
+      </p>
+
+      <div class="deep-note">
+        编辑提示：动态首页的浏览体验高度依赖关注列表质量。建议定期清理长期不更新的账号，把关注数控制在自己能在 10 分钟内扫完的范围，动态流的可读性会明显提升。
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 体验指南 ============ -->
+  <section class="sec" id="dyn-guide">
+    <div class="sec-head">
+      <h2>动态首页浏览体验指南</h2>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <div class="num">01</div>
+        <h4>先建立关注筛选习惯</h4>
+        <p>关注列表决定动态流质量。建议按分区整理关注，把高频更新的账号和长内容账号分开管理，浏览时更有节奏。</p>
+      </div>
+      <div class="guide-card">
+        <div class="num">02</div>
+        <h4>善用「稍后再看」</h4>
+        <p>动态流里遇到长视频或专栏，不一定要立刻看完。先加入稍后再看，集中时间处理，避免浏览被打断。</p>
+      </div>
+      <div class="guide-card">
+        <div class="num">03</div>
+        <h4>关注更新提醒的开关</h4>
+        <p>对特别重要的 UP 主可以开启更新提醒，其余账号保持普通关注即可，减少通知噪音。</p>
+      </div>
+      <div class="guide-card">
+        <div class="num">04</div>
+        <h4>网页端更适合长内容</h4>
+        <p>大屏阅读专栏和图文动态更舒适，评论区展开也更完整，适合需要深度阅读的场景。</p>
+      </div>
+      <div class="guide-card">
+        <div class="num">05</div>
+        <h4>移动端优先看更新</h4>
+        <p>碎片时间用移动端扫动态更新，发现感兴趣的内容再回到网页端完整观看，效率更高。</p>
+      </div>
+      <div class="guide-card">
+        <div class="num">06</div>
+        <h4>把动态当选题工具</h4>
+        <p>创作者可以从动态流观察同行的发布节奏、标题写法和互动数据，作为内容规划的参考。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="sec" id="dyn-faq">
+    <div class="sec-head">
+      <h2>关于 b站网页动态首页的常见问题</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" type="button">b站网页动态首页和首页推荐有什么区别？<span class="ico">+</span></button>
+        <div class="faq-a"><p>动态首页以你关注的 UP 主为内容来源，按发布时间聚合；首页推荐则以算法推荐为主，覆盖更广但可控性较低。简单说，动态首页是「你选择的内容」，推荐首页是「平台替你选择的内容」。两者配合使用效果最好。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">为什么动态首页有些关注账号的更新看不到？<span class="ico">+</span></button>
+        <div class="faq-a"><p>常见原因有三种：一是关注数过多导致信息流合并展示，单条更新被折叠；二是部分账号的动态类型（如纯转发）权重较低；三是页面加载未刷新。建议刷新页面，或在动态设置中检查是否开启了内容类型过滤。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">动态首页的更新是实时的吗？<span class="ico">+</span></button>
+        <div class="faq-a"><p>网页端动态首页在页面刷新后会拉取最新数据，通常接近实时。直播开播类动态的时效性最强，视频和专栏更新会有短暂延迟。如果发现更新不及时，手动刷新即可，不需要反复重开页面。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">怎样让动态首页的内容更符合自己的兴趣？<span class="ico">+</span></button>
+        <div class="faq-a"><p>核心是优化关注列表：取消长期不更新或内容偏离兴趣的账号，把关注数控制在可管理范围；同时对高价值账号设置特别关注。动态流的兴趣纯度几乎完全由关注列表决定，这一步比任何设置都有效。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">动态首页能看到已关注的直播开播提醒吗？<span class="ico">+</span></button>
+        <div class="faq-a"><p>可以。已关注主播开播时，动态流中会出现直播卡片，点击即可进入直播间。如果希望更及时，可以单独开启该主播的开播提醒，避免被其他动态刷走。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">动态首页适合用来发现新 UP 主吗？<span class="ico">+</span></button>
+        <div class="faq-a"><p>动态首页的主要定位是追踪已关注账号，发现新 UP 主的效率不如推荐流和分区热门榜。不过动态中的转发内容、评论区推荐和 UP 主之间的互动，也能提供一部分发现渠道，可以作为补充。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 用户评论 ============ -->
+  <section class="sec" id="dyn-cmt">
+    <div class="sec-head">
+      <h2>社区讨论与用户评论</h2>
+      <span class="more">近 30 天 · 精选 16 条</span>
+    </div>
+    <div class="cmt-grid">
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#fb7299;">柚</div>
+          <div><div class="cmt-name">柚子汽水</div><div class="cmt-time">2026-11-06</div></div>
+        </div>
+        <p class="cmt-text">把关注从 400 多个清到 120 个之后，动态首页终于能刷完了，信息质量肉眼可见地提升。</p>
+        <div class="cmt-like"><span>👍 128</span><span>💬 9</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#3d7eff;">夜</div>
+          <div><div class="cmt-name">夜航西飞</div><div class="cmt-time">2026-11-05</div></div>
+        </div>
+        <p class="cmt-text">网页端动态首页排版比移动端舒服太多，尤其看图文动态，评论区展开也不挤。</p>
+        <div class="cmt-like"><span>👍 96</span><span>💬 4</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#7c5cff;">观</div>
+          <div><div class="cmt-name">观察者小陈</div><div class="cmt-time">2026-11-04</div></div>
+        </div>
+        <p class="cmt-text">希望动态首页能出个「仅看视频更新」的筛选，图文动态看多了有点刷屏。</p>
+        <div class="cmt-like"><span>👍 74</span><span>💬 12</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#22b573;">阿</div>
+          <div><div class="cmt-name">阿岚不吃辣</div><div class="cmt-time">2026-11-03</div></div>
+        </div>
+        <p class="cmt-text">追更党表示动态首页就是我的命根子，关注的番剧UP一更新就能看到，比推荐流靠谱。</p>
+        <div class="cmt-like"><span>👍 88</span><span>💬 3</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#ff9f43;">慢</div>
+          <div><div class="cmt-name">慢速快门</div><div class="cmt-time">2026-11-02</div></div>
+        </div>
+        <p class="cmt-text">图文动态的阅读体验不错，就是希望配图能再大一点，现在点开才看得清细节。</p>
+        <div class="cmt-like"><span>👍 41</span><span>💬 6</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#e05a82;">柯</div>
+          <div><div class="cmt-name">柯基冲鸭</div><div class="cmt-time">2026-11-01</div></div>
+        </div>
+        <p class="cmt-text">直播开播提醒偶尔会慢半拍，进去的时候已经播了十分钟，有点可惜。</p>
+        <div class="cmt-like"><span>👍 33</span><span>💬 8</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#00b8a9;">深</div>
+          <div><div class="cmt-name">深海回信</div><div class="cmt-time">2026-10-31</div></div>
+        </div>
+        <p class="cmt-text">动态首页的「稍后再看」入口位置改过之后好用多了，长内容先存起来晚上看。</p>
+        <div class="cmt-like"><span>👍 57</span><span>💬 2</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#845ef7;">卷</div>
+          <div><div class="cmt-name">卷心菜卷</div><div class="cmt-time">2026-10-30</div></div>
+        </div>
+        <p class="cmt-text">作为创作者，动态首页是我观察同行发布节奏的主要工具，比翻主页高效。</p>
+        <div class="cmt-like"><span>👍 63</span><span>💬 5</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#f76707;">柠</div>
+          <div><div class="cmt-name">柠檬气泡水</div><div class="cmt-time">2026-10-29</div></div>
+        </div>
+        <p class="cmt-text">关注数太多的话动态流真的会乱，建议平台加个「分组查看」功能。</p>
+        <div class="cmt-like"><span>👍 49</span><span>💬 11</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#1098ad;">纸</div>
+          <div><div class="cmt-name">纸飞机航线</div><div class="cmt-time">2026-10-28</div></div>
+        </div>
+        <p class="cmt-text">动态首页的刷新机制挺顺的，基本没遇到过卡顿，这一点比某些平台强。</p>
+        <div class="cmt-like"><span>👍 38</span><span>💬 1</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#d6336c;">星</div>
+          <div><div class="cmt-name">星野拾光</div><div class="cmt-time">2026-10-27</div></div>
+        </div>
+        <p class="cmt-text">希望转发动态能折叠一下，有些UP一天转十几条，把原创内容都盖过去了。</p>
+        <div class="cmt-like"><span>👍 82</span><span>💬 14</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#5c7cfa;">老</div>
+          <div><div class="cmt-name">老白干杯</div><div class="cmt-time">2026-10-26</div></div>
+        </div>
+        <p class="cmt-text">用了三年动态首页，最大的感受是：关注列表越干净，这个页面越好用。</p>
+        <div class="cmt-like"><span>👍 105</span><span>💬 7</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#20c997;">拾</div>
+          <div><div class="cmt-name">拾光笔记</div><div class="cmt-time">2026-10-25</div></div>
+        </div>
+        <p class="cmt-text">知识区的动态更新质量很高，但内容太长，动态流里只能看到开头，有点不过瘾。</p>
+        <div class="cmt-like"><span>👍 29</span><span>💬 4</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#ae3ec9;">柒</div>
+          <div><div class="cmt-name">柒月流火</div><div class="cmt-time">2026-10-24</div></div>
+        </div>
+        <p class="cmt-text">动态首页如果能加个「按分区筛选」就完美了，现在只能一股脑往下刷。</p>
+        <div class="cmt-like"><span>👍 52</span><span>💬 9</span></div>
+      </div>
+
+      <div class="cmt-card">
+        <div class="cmt-top">
+          <div class="avatar" style="background:#0ca678;">小</div>
+          <div><div class="cmt-name">小满未满</div><div class="cmt-time">2026-10-23</div></div>
+        </div>
+        <p class="cmt-text">网页端动态首页比移动端更适合摸鱼时看一眼，不占内存，刷新也快。</p>
+        <div class="cmt-like"><span>👍 44</span><span>💬 3</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 相关资讯 ============ -->
+  <section class="sec" id="dyn-news">
+    <div class="sec-head">
+      <h2>动态首页相关资讯</h2>
+    </div>
+    <div class="news-grid">
+      <article class="news-card">
+        <span class="news-date">2026-11-07</span>
+        <h4>动态首页关注流排序逻辑更新，同一UP连续动态合并展示</h4>
+        <p>近期网页端动态首页对同一账号的连续更新做了合并处理，减少刷屏感，提升信息流可读性。用户反馈整体正向，但也有人希望保留逐条展示的选项。</p>
+      </article>
+      <article class="news-card">
+        <span class="news-date">2026-11-06</span>
+        <h4>直播开播动态卡片改版，增加直播间标题与在线人数</h4>
+        <p>动态流中的直播卡片新增标题和实时在线人数展示，点击入口更醒目。追播用户表示更容易判断是否值得进入。</p>
+      </article>
+      <article class="news-card">
+        <span class="news-date">2026-11-04</span>
+        <h4>图文动态阅读体验优化，长文支持展开全文</h4>
+        <p>网页端图文动态在信息流内支持展开全文阅读，减少跳转。对知识区和纪实类创作者来说，内容触达率有望提升。</p>
+      </article>
+      <article class="news-card">
+        <span class="news-date">2026-11-02</span>
+        <h4>关注分组功能进入测试，动态首页可按分组查看</h4>
+        <p>部分用户已看到关注分组入口，可按分组筛选动态流。若正式上线，将明显改善高关注数用户的浏览体验。</p>
+      </article>
+      <article class="news-card">
+        <span class="news-date">2026-10-30</span>
+        <h4>动态首页「稍后再看」同步优化，网页端与移动端打通</h4>
+        <p>稍后再看列表实现多端同步，网页端加入动态的视频可在移动端继续观看，适合长内容跨设备消费场景。</p>
+      </article>
+      <article class="news-card">
+        <span class="news-date">2026-10-27</span>
+        <h4>创作者观察：动态发布时段与互动量的关系</h4>
+        <p>有UP主统计了自己近三个月的动态数据，发现晚间发布的视频动态互动率更高。该结论在动态首页的推荐权重上是否成立，仍有待更多样本验证。</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 页脚 ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo"><span class="logo-mark">B</span><span>b站动态首页</span></div>
+        <p>专注 b站网页动态首页的浏览方式、更新规律与内容生态解读，为追更用户、创作者和内容观察者提供参考。</p>
+      </div>
+      <div class="foot-col">
+        <h5>内容导航</h5>
+        <a href="/#dyn-hot">热门动态</a>
+        <a href="/#dyn-update">最新更新</a>
+        <a href="/#dyn-cat">分类入口</a>
+        <a href="/#dyn-deep">深度解析</a>
+      </div>
+      <div class="foot-col">
+        <h5>使用帮助</h5>
+        <a href="/#dyn-guide">浏览指南</a>
+        <a href="/#dyn-faq">常见问题</a>
+        <a href="/#dyn-cmt">用户评论</a>
+        <a href="/#dyn-news">相关资讯</a>
+      </div>
+      <div class="foot-col">
+        <h5>友情链接</h5>
+        <a href="/#dyn-hero">首页入口</a>
+        <a href="/#dyn-intro">内容概览</a>
+        <a href="/#dyn-deep">动态机制</a>
+        <a href="/#dyn-news">社区动态</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 b站网页动态首页内容观察站 · 本页为内容整理与使用参考，非官方页面。</span>
+      <span>免责声明：页面内容基于公开信息整理，功能与界面以实际平台为准。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=this.parentElement;
+      var ans=item.querySelector('.faq-a');
+      var isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(f){
+        f.classList.remove('open');
+        f.querySelector('.faq-a').style.maxHeight=null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        ans.style.maxHeight=ans.scrollHeight+'px';
+      }
+    });
+  });
+</script>
+
+</body>
+        </html>
