@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>看片-在线看片资源推荐_看片网站内容解析与热门片单</title>
+  <meta name="description" content="看片专题页汇集热门影视、短剧、动漫与纪录片资源，提供看片网站内容解析、热门片单推荐、深度解析与用户评论，帮你快速找到值得看的片单和追更指南，适合影视爱好者收藏浏览。">
+  <meta name="keywords" content="看片,在线看片,看片推荐,影视资源,热门片单">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f0b1a'/%3E%3Ccircle cx='50' cy='50' r='26' fill='none' stroke='%23ff4d8c' stroke-width='8'/%3E%3Cpath d='M45 35 L70 50 L45 65 Z' fill='%23ff4d8c'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #0d0b14;
+      --bg-soft: #151221;
+      --card: #1b1729;
+      --card-2: #221d33;
+      --line: #2f2942;
+      --text: #f0ecff;
+      --muted: #a49cc0;
+      --pink: #ff4d8c;
+      --pink-soft: rgba(255, 77, 140, .14);
+      --cyan: #3ee8d4;
+      --cyan-soft: rgba(62, 232, 212, .12);
+      --yellow: #ffd166;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(ellipse at 12% 0%, rgba(255,77,140,.12), transparent 46%),
+        radial-gradient(ellipse at 88% 8%, rgba(62,232,212,.09), transparent 42%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+    /* ---------- 顶部导航 ---------- */
+    .nav-q7 {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(13,11,20,.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-q7 .inner {
+      display: flex; align-items: center; gap: 22px;
+      height: 64px;
+    }
+    .logo-q7 {
+      display: flex; align-items: center; gap: 9px;
+      font-weight: 800; font-size: 1.18rem; letter-spacing: .5px;
+      color: var(--text); flex-shrink: 0;
+    }
+    .logo-mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--pink), #8b5cf6);
+      display: grid; place-items: center; font-size: 14px; color: #fff;
+      box-shadow: 0 0 16px rgba(255,77,140,.5);
+    }
+    .logo-q7 span em { color: var(--pink); font-style: normal; }
+    .nav-links-q7 { display: flex; gap: 4px; flex-wrap: wrap; }
+    .nav-links-q7 a {
+      padding: 7px 13px; border-radius: 9px; font-size: .92rem;
+      color: var(--muted); transition: .2s;
+    }
+    .nav-links-q7 a:hover { color: var(--text); background: var(--card); }
+    .nav-q7 .cta {
+      margin-left: auto; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--pink), #b23bff);
+      color: #fff; font-weight: 700; font-size: .88rem;
+      padding: 9px 20px; border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(255,77,140,.35);
+      transition: .25s;
+    }
+    .nav-q7 .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,77,140,.5); }
+
+    /* ---------- Banner ---------- */
+    .hero-q7 {
+      padding: 68px 0 54px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-q7::after {
+      content: ""; position: absolute; inset: auto -100px -160px auto;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,.22), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner-q7 { max-width: 780px; position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pink-soft); color: var(--pink);
+      border: 1px solid rgba(255,77,140,.28);
+      font-size: .8rem; font-weight: 700; letter-spacing: .6px;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .hero-tag i {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--pink);
+      box-shadow: 0 0 8px var(--pink); display: inline-block;
+    }
+    .hero-q7 h1 {
+      font-size: clamp(2rem, 4.4vw, 3.1rem);
+      line-height: 1.2; font-weight: 900; letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .hero-q7 h1 em {
+      font-style: normal;
+      background: linear-gradient(100deg, var(--pink), var(--yellow) 60%, var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-desc-q7 { color: var(--muted); font-size: 1.02rem; max-width: 660px; }
+    .hero-desc-q7 strong { color: var(--text); font-weight: 600; }
+    .search-q7 {
+      margin-top: 28px; display: flex; gap: 10px; max-width: 620px;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 14px; padding: 7px 7px 7px 18px;
+      box-shadow: var(--shadow);
+    }
+    .search-q7 input {
+      flex: 1; background: none; border: none; outline: none;
+      color: var(--text); font-size: .96rem; min-width: 0;
+    }
+    .search-q7 input::placeholder { color: #6f678c; }
+    .search-q7 button {
+      border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--pink), #a642ff);
+      color: #fff; font-weight: 700; font-size: .9rem;
+      padding: 10px 24px; border-radius: 10px;
+      transition: .2s;
+    }
+    .search-q7 button:hover { filter: brightness(1.1); }
+    .hero-chips-q7 {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px;
+    }
+    .hero-chips-q7 a {
+      font-size: .86rem; color: var(--muted);
+      border: 1px solid var(--line); border-radius: 100px;
+      padding: 7px 16px; background: rgba(255,255,255,.02);
+      transition: .2s;
+    }
+    .hero-chips-q7 a:hover {
+      color: var(--pink); border-color: rgba(255,77,140,.5);
+      background: var(--pink-soft); transform: translateY(-1px);
+    }
+
+    /* ---------- 通用 section ---------- */
+    .sec-q7 { padding: 52px 0; }
+    .sec-head-q7 {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 16px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .sec-title-q7 {
+      font-size: 1.55rem; font-weight: 800; letter-spacing: .5px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sec-title-q7::before {
+      content: ""; width: 5px; height: 24px; border-radius: 4px;
+      background: linear-gradient(var(--pink), var(--cyan));
+      display: inline-block;
+    }
+    .sec-sub-q7 { color: var(--muted); font-size: .9rem; }
+    .more-link-q7 {
+      font-size: .86rem; color: var(--cyan); font-weight: 600;
+      border-bottom: 1px dashed rgba(62,232,212,.4);
+    }
+
+    /* ---------- 分类入口 ---------- */
+    .cat-grid-q7 {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+      gap: 12px;
+    }
+    .cat-item-q7 {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 14px; padding: 18px 14px; text-align: center;
+      transition: .25s; position: relative; overflow: hidden;
+    }
+    .cat-item-q7:hover {
+      transform: translateY(-4px); border-color: rgba(255,77,140,.45);
+      box-shadow: 0 12px 28px rgba(255,77,140,.13);
+    }
+    .cat-item-q7 .ico { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+    .cat-item-q7 b { font-size: .92rem; display: block; }
+    .cat-item-q7 small { color: var(--muted); font-size: .74rem; }
+
+    /* ---------- 热门推荐卡片 ---------- */
+    .rec-grid-q7 {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+      gap: 18px;
+    }
+    .rec-card-q7 {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); overflow: hidden;
+      transition: .28s; display: flex; flex-direction: column;
+    }
+    .rec-card-q7:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,77,140,.4);
+      box-shadow: 0 18px 38px rgba(0,0,0,.45);
+    }
+    .rec-cover-q7 {
+      height: 104px; position: relative;
+      display: flex; align-items: flex-end; padding: 12px 14px;
+    }
+    .rec-cover-q7::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(13,11,20,.82));
+    }
+    .rec-cover-q7 .badge {
+      position: relative; z-index: 2;
+      font-size: .7rem; font-weight: 700; letter-spacing: .5px;
+      background: rgba(13,11,20,.7); border: 1px solid rgba(255,255,255,.18);
+      padding: 3px 10px; border-radius: 100px; color: var(--cyan);
+      backdrop-filter: blur(4px);
+    }
+    .rec-body-q7 { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; }
+    .rec-body-q7 h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 6px; }
+    .rec-tags-q7 { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
+    .rec-tags-q7 span {
+      font-size: .7rem; color: var(--muted);
+      background: var(--card-2); border-radius: 6px; padding: 2px 8px;
+    }
+    .rec-body-q7 p { color: var(--muted); font-size: .84rem; flex: 1; }
+    .rec-meta-q7 {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line);
+      font-size: .75rem; color: #7d7598;
+    }
+    .rec-meta-q7 b { color: var(--yellow); font-weight: 700; }
+
+    /* ---------- 最新更新列表 ---------- */
+    .update-list-q7 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
+    .upd-item-q7 {
+      display: flex; gap: 13px; padding: 12px 14px;
+      background: var(--bg-soft); border: 1px solid transparent;
+      border-radius: 12px; align-items: flex-start; transition: .2s;
+    }
+    .upd-item-q7:hover { border-color: var(--line); background: var(--card); }
+    .upd-time-q7 {
+      font-size: .72rem; color: var(--cyan); font-weight: 700;
+      white-space: nowrap; padding-top: 2px; min-width: 52px;
+    }
+    .upd-item-q7 .txt b { font-size: .9rem; display: block; }
+    .upd-item-q7 .txt span { font-size: .8rem; color: var(--muted); }
+
+    /* ---------- 深度解析正文 ---------- */
+    .deep-q7 {
+      background: linear-gradient(160deg, var(--bg-soft), var(--card));
+      border: 1px solid var(--line); border-radius: 22px;
+      padding: 36px 34px; position: relative; overflow: hidden;
+    }
+    .deep-q7::before {
+      content: ""; position: absolute; top: -60px; right: -40px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,77,140,.16), transparent 70%);
+    }
+    .deep-q7 h2 { font-size: 1.5rem; margin-bottom: 18px; font-weight: 800; }
+    .deep-q7 h3 { font-size: 1.08rem; margin: 24px 0 8px; color: var(--pink); font-weight: 700; }
+    .deep-q7 p { color: #c3bcd9; font-size: .95rem; margin-bottom: 12px; }
+    .deep-q7 p strong { color: var(--text); }
+    .deep-q7 .quote-q7 {
+      border-left: 3px solid var(--cyan); padding: 10px 0 10px 16px;
+      color: var(--muted); font-size: .9rem; margin: 18px 0;
+      background: rgba(62,232,212,.04); border-radius: 0 10px 10px 0;
+    }
+
+    /* ---------- 体验指南 ---------- */
+    .guide-grid-q7 { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 16px; }
+    .guide-card-q7 {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 14px; padding: 22px 20px; transition: .25s;
+    }
+    .guide-card-q7:hover { border-color: rgba(62,232,212,.4); transform: translateY(-3px); }
+    .guide-card-q7 .n {
+      font-size: .74rem; font-weight: 800; color: var(--bg);
+      background: var(--cyan); width: 24px; height: 24px;
+      border-radius: 7px; display: grid; place-items: center; margin-bottom: 12px;
+    }
+    .guide-card-q7 h3 { font-size: 1rem; margin-bottom: 6px; }
+    .guide-card-q7 p { font-size: .85rem; color: var(--muted); }
+
+    /* ---------- FAQ 手风琴 ---------- */
+    .faq-q7 { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item-q7 {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 13px; overflow: hidden;
+    }
+    .faq-q7 .q {
+      padding: 16px 20px; font-weight: 600; font-size: .95rem;
+      display: flex; justify-content: space-between; gap: 14px;
+      cursor: pointer; align-items: center;
+    }
+    .faq-q7 .q::after {
+      content: "＋"; color: var(--pink); font-weight: 800; transition: .25s;
+      flex-shrink: 0;
+    }
+    .faq-item-q7.open .q::after { transform: rotate(45deg); }
+    .faq-q7 .a {
+      max-height: 0; overflow: hidden; transition: max-height .35s ease;
+      color: var(--muted); font-size: .88rem;
+    }
+    .faq-q7 .a p { padding: 0 20px 16px; }
+    .faq-item-q7.open .a { max-height: 260px; }
+
+    /* ---------- 评论 ---------- */
+    .cmt-list-q7 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cmt-q7 {
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: 13px; padding: 16px 18px;
+    }
+    .cmt-head-q7 { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .avatar-q7 {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      display: grid; place-items: center; font-size: .8rem; font-weight: 800;
+      color: #0d0b14;
+    }
+    .cmt-head-q7 b { font-size: .86rem; }
+    .cmt-head-q7 time { font-size: .72rem; color: #6f678c; margin-left: auto; }
+    .cmt-q7 p { font-size: .85rem; color: #b9b1d1; }
+
+    /* ---------- 资讯 ---------- */
+    .news-grid-q7 { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 16px; }
+    .news-card-q7 {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 14px; padding: 20px; transition: .25s;
+    }
+    .news-card-q7:hover { border-color: rgba(255,209,102,.4); transform: translateY(-3px); }
+    .news-card-q7 time { font-size: .74rem; color: var(--yellow); font-weight: 700; }
+    .news-card-q7 h3 { font-size: .98rem; margin: 8px 0 7px; line-height: 1.5; }
+    .news-card-q7 p { font-size: .83rem; color: var(--muted); }
+
+    /* ---------- 页脚 ---------- */
+    .foot-q7 {
+      border-top: 1px solid var(--line); margin-top: 30px;
+      padding: 40px 0 30px; background: rgba(0,0,0,.25);
+    }
+    .foot-top-q7 {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 30px;
+      padding-bottom: 26px; border-bottom: 1px dashed var(--line);
+    }
+    .foot-brand-q7 b { font-size: 1.05rem; display: block; margin-bottom: 8px; }
+    .foot-brand-q7 p { color: var(--muted); font-size: .82rem; max-width: 340px; }
+    .foot-col-q7 h4 { font-size: .9rem; margin-bottom: 10px; color: var(--text); }
+    .foot-col-q7 a { display: block; color: var(--muted); font-size: .82rem; padding: 3px 0; }
+    .foot-col-q7 a:hover { color: var(--pink); }
+    .foot-bot-q7 {
+      padding-top: 20px; color: #6f678c; font-size: .78rem;
+      display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 860px) {
+      .nav-links-q7 { display: none; }
+      .update-list-q7, .cmt-list-q7 { grid-template-columns: 1fr; }
+      .foot-top-q7 { grid-template-columns: 1fr 1fr; }
+      .hero-q7 { padding: 46px 0 38px; }
+      .deep-q7 { padding: 26px 22px; }
+    }
+    @media (max-width: 560px) {
+      .foot-top-q7 { grid-template-columns: 1fr; }
+      .nav-q7 .cta { padding: 8px 14px; font-size: .8rem; }
+      .sec-q7 { padding: 36px 0; }
+      .hero-chips-q7 a { font-size: .8rem; padding: 6px 12px; }
+      .search-q7 { flex-direction: column; background: none; border: none; padding: 0; box-shadow: none; }
+      .search-q7 input {
+        background: var(--card); border: 1px solid var(--line);
+        border-radius: 12px; padding: 12px 16px;
+      }
+      .search-q7 button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 顶部导航 ================= -->
+  <header class="nav-q7">
+    <div class="wrap inner">
+      <a class="logo-q7" href="/#section-hero">
+        <span class="logo-mark">▶</span>
+        <span>看片<em>指南</em></span>
+      </a>
+      <nav class="nav-links-q7" aria-label="主导航">
+        <a href="/#section-hot">热门推荐</a>
+        <a href="/#section-update">最新更新</a>
+        <a href="/#section-category">分类入口</a>
+        <a href="/#section-deep">深度解析</a>
+        <a href="/#section-faq">常见问题</a>
+        <a href="/#section-comments">用户评论</a>
+        <a href="/#section-news">相关资讯</a>
+      </nav>
+      <a class="cta" href="/#section-hot">开始看片</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= 首屏 Banner ================= -->
+    <section class="hero-q7" id="section-hero">
+      <div class="wrap hero-inner-q7">
+        <div class="hero-tag"><i></i> 2026 看片内容专题 · 持续更新</div>
+        <h1>看片不迷路：<em>热门影视与短剧</em>一站式推荐</h1>
+        <p class="hero-desc-q7">
+          想找值得看的片子却总在片海里打转？这里把<strong>看片</strong>需求拆成清晰的类型、热度和口碑线索，
+          从电影、剧集到短剧、动漫，一页看懂最近哪些内容值得打开。
+        </p>
+        <p class="hero-desc-q7" style="margin-top:8px;">
+          按题材、更新节奏和观看场景来挑片，比盲目刷列表更省时间。收藏本页，随时回来看最新看片推荐。
+        </p>
+
+        <form class="search-q7" role="search" onsubmit="return false;">
+          <input type="text" placeholder="搜片名、类型、演员或关键词，例如：悬疑短剧" aria-label="搜索看片内容">
+          <button type="button">搜索看片</button>
+        </form>
+
+        <div class="hero-chips-q7">
+          <a href="/#section-hot">热门片单</a>
+          <a href="/#section-update">今日更新</a>
+          <a href="/#section-category">悬疑犯罪</a>
+          <a href="/#section-category">都市情感</a>
+          <a href="/#section-category">短剧速看</a>
+          <a href="/#section-category">动漫番剧</a>
+          <a href="/#section-category">纪录片</a>
+          <a href="/#section-deep">深度解析</a>
+          <a href="/#section-faq">看片答疑</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 内容简介 ================= -->
+    <section class="sec-q7" id="section-intro">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">看片内容简介：这个专题解决什么问题</h2>
+          <span class="sec-sub-q7">约 460 字 · 编辑整理</span>
+        </div>
+        <div class="deep-q7" style="padding:32px 34px;">
+          <p>
+            <strong>看片</strong>这件事，表面上是“打开一部片子”，实际上难在前面的筛选：类型太多、更新太杂、口碑真假难辨，
+            同一部作品在不同平台被反复推荐，反而让人不知道从哪看起。本专题页围绕<strong>看片</strong>的核心需求来组织内容，
+            把“看什么、为什么看、先看哪部、哪里容易踩坑”拆成可读的模块，减少无效翻找。
+          </p>
+          <p>
+            页面适合三类人：一是想在碎片时间快速看片、需要短平快推荐的人；二是习惯追更、关注更新节奏和完结状态的剧迷；
+            三是想按题材系统刷片、需要类型脉络和同类对比的深度观众。我们不堆砌片名，而是给每部作品配上类型标签、
+            简短看点和热度参考，让<strong>看片</strong>选择更有依据。
+          </p>
+          <p>
+            内容层面，热门推荐和最新更新负责解决“现在看什么”；深度解析负责解释“这类片子为什么好看”；
+            分类入口和 FAQ 负责处理“按什么顺序看、哪些适合入门”。评论与资讯则补上真实观众的反馈和近期动态，
+            让整页不只是列表，而是一个可以持续回来的看片参考页。
+          </p>
+          <p>
+            值得收藏的原因也很直接：看片需求会反复出现，而片单和热度会变化。本页把更新状态、类型标签和编辑判断放在一起，
+            每次回来都能快速锁定新内容。对搜索“看片推荐”“在线看片资源”“最近有什么好看的”的用户来说，
+            这一页更像一个结构清楚的入口，而不是一篇看完就走的文章。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 分类入口 ================= -->
+    <section class="sec-q7" id="section-category">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">看片分类入口</h2>
+          <span class="sec-sub-q7">按题材快速缩小范围</span>
+        </div>
+        <div class="cat-grid-q7">
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">🎬</span><b>电影长片</b><small>院线与口碑</small></a>
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">📺</span><b>电视剧集</b><small>连续追更</small></a>
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">⚡</span><b>短剧速看</b><small>高密度爽点</small></a>
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">🎨</span><b>动漫番剧</b><small>新番与经典</small></a>
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">🌍</span><b>纪录片</b><small>真实与人文</small></a>
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">🕵️</span><b>悬疑犯罪</b><small>推理反转</small></a>
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">💞</span><b>都市情感</b><small>关系与成长</small></a>
+          <a class="cat-item-q7" href="/#section-hot"><span class="ico">🚀</span><b>科幻奇幻</b><small>世界观设定</small></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 热门推荐 ================= -->
+    <section class="sec-q7" id="section-hot">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">热门看片推荐</h2>
+          <a class="more-link-q7" href="/#section-update">查看全部更新 →</a>
+        </div>
+        <div class="rec-grid-q7">
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#3b1d4f,#ff4d8c);">
+              <span class="badge">悬疑 · 完结</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>雾港来信</h3>
+              <div class="rec-tags-q7"><span>悬疑</span><span>双线叙事</span><span>短剧</span></div>
+              <p>一桩旧案牵出港口小城的秘密，节奏紧凑，每集结尾都留钩子，适合喜欢推理反转的看片用户。</p>
+              <div class="rec-meta-q7"><span>热度 96.2万</span><b>9.1 分</b></div>
+            </div>
+          </article>
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#133347,#3ee8d4);">
+              <span class="badge">科幻 · 更新中</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>第七码头</h3>
+              <div class="rec-tags-q7"><span>科幻</span><span>世界观</span><span>周更</span></div>
+              <p>近未来港口城市的记忆交易设定，前两集铺垫稍慢，第三集开始进入主线，适合耐心的科幻观众。</p>
+              <div class="rec-meta-q7"><span>热度 88.7万</span><b>8.7 分</b></div>
+            </div>
+          </article>
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#4a2b12,#ffd166);">
+              <span class="badge">都市 · 热播</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>合租时代</h3>
+              <div class="rec-tags-q7"><span>都市</span><span>群像</span><span>轻喜剧</span></div>
+              <p>三个年轻人的合租日常，笑点密集但不悬浮，适合下班后放松看片，人物关系推进自然。</p>
+              <div class="rec-meta-q7"><span>热度 82.4万</span><b>8.5 分</b></div>
+            </div>
+          </article>
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#2a1450,#8b5cf6);">
+              <span class="badge">动漫 · 新番</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>云海邮差</h3>
+              <div class="rec-tags-q7"><span>动漫</span><span>治愈</span><span>单元剧</span></div>
+              <p>以邮差送信串联不同小镇故事，画风柔和，适合喜欢慢节奏和情绪价值的看片人群。</p>
+              <div class="rec-meta-q7"><span>热度 76.9万</span><b>9.0 分</b></div>
+            </div>
+          </article>
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#123b2f,#3ee8d4);">
+              <span class="badge">纪录片 · 完结</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>海岸线的味道</h3>
+              <div class="rec-tags-q7"><span>美食</span><span>人文</span><span>纪录片</span></div>
+              <p>沿海小城的食物与家族故事，镜头克制，信息密度高，适合想看点真实内容的看片用户。</p>
+              <div class="rec-meta-q7"><span>热度 71.5万</span><b>9.3 分</b></div>
+            </div>
+          </article>
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#4a1330,#ff4d8c);">
+              <span class="badge">短剧 · 完结</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>离婚倒计时三十天</h3>
+              <div class="rec-tags-q7"><span>情感</span><span>反转</span><span>短剧</span></div>
+              <p>每集三分钟，节奏快、冲突集中，适合通勤看片；后半段人物动机稍显仓促，但爽点足够。</p>
+              <div class="rec-meta-q7"><span>热度 69.8万</span><b>8.3 分</b></div>
+            </div>
+          </article>
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#1d2b4f,#6fa8ff);">
+              <span class="badge">犯罪 · 更新中</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>逆向追踪</h3>
+              <div class="rec-tags-q7"><span>犯罪</span><span>刑侦</span><span>周更</span></div>
+              <p>以时间线倒推案件的方式展开，观众需要跟着线索走，适合喜欢动脑的看片群体。</p>
+              <div class="rec-meta-q7"><span>热度 65.2万</span><b>8.8 分</b></div>
+            </div>
+          </article>
+
+          <article class="rec-card-q7">
+            <div class="rec-cover-q7" style="background:linear-gradient(135deg,#3a2a10,#ffd166);">
+              <span class="badge">综艺 · 热播</span>
+            </div>
+            <div class="rec-body-q7">
+              <h3>周末开麦</h3>
+              <div class="rec-tags-q7"><span>综艺</span><span>音乐</span><span>轻松</span></div>
+              <p>音乐人围坐聊创作与现场演唱，氛围松弛，适合边做别的事边看片，不烧脑但耐听。</p>
+              <div class="rec-meta-q7"><span>热度 61.7万</span><b>8.2 分</b></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 最新更新 ================= -->
+    <section class="sec-q7" id="section-update">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">最新看片更新动态</h2>
+          <span class="sec-sub-q7">2026 年 11 月 7 日更新</span>
+        </div>
+        <div class="update-list-q7">
+          <div class="upd-item-q7"><span class="upd-time-q7">今日 10:20</span><div class="txt"><b>雾港来信 · 番外篇上线</b><span>补充主线未展开的配角视角，建议看完正片再看。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">今日 09:45</span><div class="txt"><b>第七码头 · 第 6 集更新</b><span>记忆交易规则进一步揭开，本周剧情密度明显提升。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">今日 08:30</span><div class="txt"><b>合租时代 · 第 14 集上线</b><span>合租矛盾集中爆发，轻喜剧开始转向人物成长线。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">昨日 21:10</span><div class="txt"><b>云海邮差 · 第 9 话更新</b><span>新单元故事聚焦“未寄出的信”，情绪后劲很足。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">昨日 19:40</span><div class="txt"><b>逆向追踪 · 第 11 集上线</b><span>时间线出现交叉点，前几集的细节开始回收。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">昨日 17:05</span><div class="txt"><b>海岸线的味道 · 导演剪辑版</b><span>增加两段未播出的家庭访谈，片长多出 12 分钟。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">11 月 5 日</span><div class="txt"><b>离婚倒计时三十天 · 大结局</b><span>结局走开放路线，评论区对人物选择讨论热烈。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">11 月 5 日</span><div class="txt"><b>周末开麦 · 第 7 期上线</b><span>本期聊“一首歌的诞生”，适合音乐类看片用户。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">11 月 4 日</span><div class="txt"><b>雾港来信 · 主创访谈更新</b><span>编剧回应双线叙事的设计逻辑，解释了结尾留白。</span></div></div>
+          <div class="upd-item-q7"><span class="upd-time-q7">11 月 4 日</span><div class="txt"><b>合租时代 · 角色番外上线</b><span>以配角视角补完一条支线，轻松向，适合睡前看片。</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 深度解析 ================= -->
+    <section class="sec-q7" id="section-deep">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">看片深度解析：类型、节奏与选择逻辑</h2>
+          <span class="sec-sub-q7">约 820 字 · 编辑观点</span>
+        </div>
+        <div class="deep-q7">
+          <p>
+            搜索<strong>看片</strong>的人，需求并不完全一样。有人想要“现在立刻能看、不用动脑”的内容，
+            有人想找“值得花一个周末认真看”的作品，还有人只是想知道最近大家都在讨论什么。
+            所以单靠一个热门榜单很难满足所有看片场景，更合理的做法是按消费成本来分层：时间成本、理解成本、情绪成本。
+          </p>
+
+          <h3>一、类型决定了看片的第一印象</h3>
+          <p>
+            悬疑犯罪类作品的吸引力在于信息差和反转，观众会主动参与推理，看片过程更像解谜；
+            都市情感类更依赖人物关系，节奏可以慢，但角色必须立得住；短剧则把冲突密度拉到最高，
+            两三分钟一集，靠强钩子留住注意力。动漫和纪录片又是另一种逻辑：前者看世界观和情绪表达，
+            后者看真实感和信息增量。<strong>看片</strong>之前先确认自己想要哪种体验，比盲目点开更有效。
+          </p>
+
+          <h3>二、节奏比题材更影响观看体验</h3>
+          <p>
+            同样是悬疑，有的作品前两集慢慢铺陈，有的第一分钟就抛尸案。看片时如果发现节奏和自己的预期不匹配，
+            不一定代表作品不好，而是消费场景不对。通勤、排队、睡前这些碎片时间，更适合短剧、单元剧和轻喜剧；
+            完整周末则适合长片、纪录片和需要连续注意力的剧集。把节奏和场景对齐，看片体验会明显提升。
+          </p>
+
+          <h3>三、人物和表演是留住观众的关键</h3>
+          <p>
+            很多作品设定不错，但人物动机单薄，看片到中段就会失去兴趣。反过来，一些类型老套的作品，
+            靠演员的表演和角色关系也能让人追下去。判断方法很实际：看前两集时留意角色做选择时是否有“人味”，
+            如果人物只是在推动情节，那后续大概率会乏力；如果人物自己有欲望和矛盾，故事通常更耐看。
+          </p>
+
+          <div class="quote-q7">
+            编辑提示：看片推荐只是参考，真正决定体验的是你的观看场景和预期。把“我想放松”和“我想动脑”分开，选片会轻松很多。
+          </div>
+
+          <h3>四、同类内容比较要看差异点</h3>
+          <p>
+            同题材作品扎堆时，比较维度可以是叙事结构、视听风格和情感落点。比如双线叙事和单线推进的差别，
+            会直接影响看片时的注意力分配；冷色调、手持镜头和高饱和、固定机位的作品，情绪传达也完全不同。
+            这些差异比“谁更火”更值得参考，也更适合写进自己的看片清单。
+          </p>
+
+          <h3>五、读者搜索“看片”通常想了解什么</h3>
+          <p>
+            从搜索意图看，大部分用户想知道：最近有什么值得看、某部作品值不值得追、在哪个类型里找、
+            更新到第几集、完结了没有、适合什么样的人群。本页把这些信息前置到卡片和更新列表里，
+            再用深度解析补充判断依据，目的是让<strong>看片</strong>决策更快，而不是把用户留在无限滚动里。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 体验指南 ================= -->
+    <section class="sec-q7" id="section-guide">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">看片体验指南</h2>
+          <span class="sec-sub-q7">怎么用这一页更顺手</span>
+        </div>
+        <div class="guide-grid-q7">
+          <div class="guide-card-q7"><span class="n">1</span><h3>先看分类再挑片</h3><p>不急着点热门，先按题材缩小范围，能减少大量无效浏览。</p></div>
+          <div class="guide-card-q7"><span class="n">2</span><h3>关注更新状态</h3><p>连载和完结的观看体验差别很大，追更前先确认更新节奏。</p></div>
+          <div class="guide-card-q7"><span class="n">3</span><h3>用标签做筛选</h3><p>类型、节奏、情绪标签组合起来，比单一关键词更精准。</p></div>
+          <div class="guide-card-q7"><span class="n">4</span><h3>移动端友好阅读</h3><p>页面适配手机浏览，通勤路上也能快速浏览片单和更新。</p></div>
+          <div class="guide-card-q7"><span class="n">5</span><h3>收藏后回看更新</h3><p>片单会变化，收藏本页可以随时回来看最新看片推荐。</p></div>
+          <div class="guide-card-q7"><span class="n">6</span><h3>顺着推荐扩展</h3><p>从一部作品跳到同类推荐，能更自然地扩展自己的看片路径。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="sec-q7" id="section-faq">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">看片常见问题</h2>
+          <span class="sec-sub-q7">点击问题展开回答</span>
+        </div>
+        <div class="faq-q7" id="faqBox">
+
+          <div class="faq-item-q7">
+            <div class="q" role="button" tabindex="0">最近想找部片子看，应该从哪类开始？</div>
+            <div class="a"><p>如果只想放松，优先从轻喜剧、单元剧或短剧开始，单集时间短、进入门槛低；如果想认真投入，可以选悬疑、犯罪或纪录片，信息密度更高。看片前先确认自己有多少连续时间，再决定类型，比直接看榜单更有效。</p></div>
+          </div>
+
+          <div class="faq-item-q7">
+            <div class="q" role="button" tabindex="0">短剧和长剧的看片体验差别在哪？</div>
+            <div class="a"><p>短剧节奏快、冲突集中，适合碎片时间，但人物铺垫往往较少；长剧有空间展开关系和世界观，适合连续追看。看片时如果更在意爽点和效率，选短剧；如果更在意人物成长和细节，长剧更合适。</p></div>
+          </div>
+
+          <div class="faq-item-q7">
+            <div class="q" role="button" tabindex="0">看片推荐里的评分和热度可信吗？</div>
+            <div class="a"><p>热度反映近期讨论量，评分反映观众综合感受，两者都只是参考。看片时更建议结合类型、节奏和评论里的具体描述判断，尤其是中评和差评提到的缺点，往往比高分更有信息量。</p></div>
+          </div>
+
+          <div class="faq-item-q7">
+            <div class="q" role="button" tabindex="0">连载中的作品值得现在追吗？</div>
+            <div class="a"><p>看片习惯不同，答案也不同。喜欢讨论和猜剧情的人适合追更，能参与评论互动；不喜欢等待的人更适合等完结后一次看完。本页的更新列表会标注连载状态，方便按自己的节奏选择。</p></div>
+          </div>
+
+          <div class="faq-item-q7">
+            <div class="q" role="button" tabindex="0">动漫和真人剧的看片选择怎么平衡？</div>
+            <div class="a"><p>动漫在设定和情绪表达上更自由，适合喜欢想象力和画风的观众；真人剧在表演和现实质感上更有优势。看片时不必二选一，可以按当天心情切换，治愈类动漫和都市剧其实受众重叠很高。</p></div>
+          </div>
+
+          <div class="faq-item-q7">
+            <div class="q" role="button" tabindex="0">这一页的看片内容会持续更新吗？</div>
+            <div class="a"><p>会。热门推荐、最新更新和资讯模块会按近期动态调整，深度解析也会补充新的类型观察。建议收藏页面，隔一段时间回来看更新状态和新增片单，比一次性找完更符合看片的实际节奏。</p></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 用户评论 ================= -->
+    <section class="sec-q7" id="section-comments">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">看片用户评论精选</h2>
+          <span class="sec-sub-q7">近 30 天 · 真实讨论氛围</span>
+        </div>
+        <div class="cmt-list-q7">
+
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#ff4d8c;">雾</span><b>雾里看片</b><time>11 月 6 日</time></div><p>《雾港来信》番外比正片还稳，配角视角补得很舒服，看完正片再看刚好。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#3ee8d4;">码</span><b>码头等风</b><time>11 月 6 日</time></div><p>第七码头前两集确实慢，我差点弃了，坚持到第三集才觉得值，科幻迷可以再给点耐心。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#ffd166;">合</span><b>合租观察员</b><time>11 月 5 日</time></div><p>合租时代这集矛盾爆发得有点突然，但笑点还在，下饭看片没问题。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#8b5cf6;">云</span><b>云海收信人</b><time>11 月 5 日</time></div><p>云海邮差第九话那个未寄出的信，后劲太大了，治愈番里少见的克制表达。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#6fa8ff;">逆</span><b>逆向推理中</b><time>11 月 4 日</time></div><p>逆向追踪的时间线开始收了，前面几集埋的细节终于有回应，看片时得记笔记。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#3ee8d4;">海</span><b>海岸线食客</b><time>11 月 4 日</time></div><p>导演剪辑版多出来的访谈很值，纪录片还是得看完整版，信息量差挺多。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#ff4d8c;">离</span><b>倒计时观众</b><time>11 月 3 日</time></div><p>离婚倒计时结局走开放路线我能接受，但后半段人物动机确实有点赶，短剧通病。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#ffd166;">周</span><b>周末开麦听众</b><time>11 月 3 日</time></div><p>周末开麦适合背景音，但聊创作的部分其实挺有内容，不完全是轻松综艺。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#8b5cf6;">片</span><b>片单收集癖</b><time>11 月 2 日</time></div><p>这页分类做得清楚，我一般先看短剧区再翻悬疑，比在平台首页乱刷效率高。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#6fa8ff;">夜</span><b>夜航看片</b><time>11 月 2 日</time></div><p>希望更新列表能标一下总集数，追更的时候老是不知道还剩多少。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#3ee8d4;">慢</span><b>慢热型观众</b><time>11 月 1 日</time></div><p>我反而喜欢前两集慢的片子，看片节奏因人而异，别被评分绑住。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#ff4d8c;">悬</span><b>悬疑不眠</b><time>10 月 31 日</time></div><p>雾港来信的结尾留白处理得不错，但我觉得动机交代还能再细一点。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#ffd166;">通</span><b>通勤看片党</b><time>10 月 30 日</time></div><p>短剧真的太适合通勤了，三分钟一集，两站路正好一集，这页推荐挺对我胃口。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#8b5cf6;">画</span><b>画风优先</b><time>10 月 29 日</time></div><p>云海邮差的色彩和构图很舒服，看片时我会暂停截图，治愈系做成这样不容易。</p></div>
+          <div class="cmt-q7"><div class="cmt-head-q7"><span class="avatar-q7" style="background:#6fa8ff;">资</span><b>资讯跟进者</b><time>10 月 28 日</time></div><p>主创访谈比正片还有意思，编剧解释双线叙事那段建议加到深度解析里。</p></div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 相关资讯 ================= -->
+    <section class="sec-q7" id="section-news">
+      <div class="wrap">
+        <div class="sec-head-q7">
+          <h2 class="sec-title-q7">看片相关资讯</h2>
+          <span class="sec-sub-q7">近期动态与内容观察</span>
+        </div>
+        <div class="news-grid-q7">
+
+          <article class="news-card-q7">
+            <time>2026-11-06</time>
+            <h3>短剧看片需求持续上升，三分钟叙事成通勤场景首选</h3>
+            <p>近期短剧更新密度明显增加，用户更看重单集冲突和更新稳定性，看片选择开始向轻量内容倾斜。</p>
+          </article>
+
+          <article class="news-card-q7">
+            <time>2026-11-05</time>
+            <h3>悬疑剧《雾港来信》番外上线，配角视角补完主线留白</h3>
+            <p>番外篇没有延展主线，而是补齐配角动机，对看完正片仍觉得有疑问的看片用户比较友好。</p>
+          </article>
+
+          <article class="news-card-q7">
+            <time>2026-11-04</time>
+            <h3>科幻剧集《第七码头》口碑回升，世界观逐步展开</h3>
+            <p>前两集节奏偏慢导致部分观众流失，第三集后设定密度提升，看片评价出现明显分化。</p>
+          </article>
+
+          <article class="news-card-q7">
+            <time>2026-11-03</time>
+            <h3>纪录片《海岸线的味道》推出导演剪辑版，增加未播访谈</h3>
+            <p>新增内容集中在家庭关系和食物记忆，片长增加十二分钟，适合喜欢完整叙事的看片观众。</p>
+          </article>
+
+          <article class="news-card-q7">
+            <time>2026-11-01</time>
+            <h3>看片片单呈现类型化趋势，观众更倾向按场景选择内容</h3>
+            <p>从近期评论看，用户越来越关注“适合什么时候看”，而不是单纯追逐热度，场景匹配成为选片关键。</p>
+          </article>
+
+          <article class="news-card-q7">
+            <time>2026-10-29</time>
+            <h3>音乐综艺《周末开麦》第七期上线，聚焦歌曲创作过程</h3>
+            <p>本期内容从表演转向创作幕后，适合对音乐制作感兴趣的看片用户，节奏相对舒缓。</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= 页脚 ================= -->
+  <footer class="foot-q7">
+    <div class="wrap">
+      <div class="foot-top-q7">
+        <div class="foot-brand-q7">
+          <b>看片指南 · 内容专题页</b>
+          <p>本页围绕看片需求整理热门推荐、更新动态与类型解析，内容为编辑整理与用户讨论汇总，仅作观看参考。</p>
+        </div>
+        <div class="foot-col-q7">
+          <h4>快速入口</h4>
+          <a href="/#section-hot">热门看片推荐</a>
+          <a href="/#section-update">最新更新动态</a>
+          <a href="/#section-deep">深度解析</a>
+          <a href="/#section-faq">常见问题</a>
+        </div>
+        <div class="foot-col-q7">
+          <h4>友情链接</h4>
+          <a href="/#section-category">分类入口</a>
+          <a href="/#section-comments">用户评论</a>
+          <a href="/#section-news">相关资讯</a>
+          <a href="/#section-guide">体验指南</a>
+        </div>
+      </div>
+      <div class="foot-bot-q7">
+        <span>© 2026 看片指南 · 内容专题页 版权所有</span>
+        <span>免责声明：页面内容为信息整理与观点参考，不提供任何资源存储或传播服务。</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ 手风琴交互
+    (function () {
+      var items = document.querySelectorAll('#faqBox .faq-item-q7');
+      items.forEach(function (item) {
+        var q = item.querySelector('.q');
+        q.addEventListener('click', function () {
+          var isOpen = item.classList.contains('open');
+          items.forEach(function (i) { i.classList.remove('open'); });
+          if (!isOpen) item.classList.add('open');
+        });
+        q.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            q.click();
+          }
+        });
+      });
+      if (items.length) items[0].classList.add('open');
+    })();
+  </script>
+
+  <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+                                       </html>
